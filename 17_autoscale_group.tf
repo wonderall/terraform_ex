@@ -7,7 +7,7 @@ resource "aws_autoscaling_group" "lyh_autoscaling_gr" {
   health_check_type = "EC2"
   force_delete = false 
   # vpc_zone_identifier = [aws_subnet.lyh_was[0].id, aws_subnet.lyh_was[1].id]
-  vpc_zone_identifier = concat(aws_subnet.lyh_was[*].id)
+  vpc_zone_identifier = concat(aws_subnet.lyh_pub[*].id)
   launch_template {
     id = aws_launch_template.lyh_lt.id 
     version = "$Latest"

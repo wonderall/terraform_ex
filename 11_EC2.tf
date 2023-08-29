@@ -1,23 +1,23 @@
-/*
-data "aws_ami" "lyh_ami"{
-    most_recent =  true
+data "aws_ami" "sdkim_ami" {
+  most_recent = true
 
-    filter {
-      name = "name"
-      values = ["amzn2-ami-hvm-kernel 5.10-x86_64-gp2"]
-    }
+  filter {
+    name   = "name"
+    values = ["amzn2-ami-hvm-*-x86_64-gp2"]
+  }
 
-    filter {
-      name = "virtualization-type"
-      values = ["hvm"]
-    }
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
 
-    owners = ["amazon"]
+  owners = ["amazon"]
 }
-*/
-#output "ami_id" {
-#    value = data.aws_ami.lyh_ami.image_id
-#}
+
+
+output "ami_id" {
+    value = data.aws_ami.sdkim_ami.image_id
+}
 
 resource "aws_instance" "lyh_ec2" {
   ami = "ami-084e92d3e117f7692"
@@ -29,16 +29,8 @@ resource "aws_instance" "lyh_ec2" {
   private_ip = "10.0.0.11"
   subnet_id = aws_subnet.lyh_pub[0].id
   user_data = file("./install.sh")
-  /*
-  user_data =<<eof
-    #! /bin/bash
-    yum install -y httpd
-    echo 'hello terraform' > /var/www/html/index.html
-    systemctl enable --now httpd
-    eof
-*/
   tags = {
-    Name = "lyh-pub"
+    Name = "lyh-web"
   }
 }
 

@@ -18,5 +18,5 @@ resource "aws_launch_template" "lyh_lt" {
       Name = "lyh-temp"
     }
   }
-  # user_data = filebase64("${path.module}/install.sh")
+  #user_data = filebase64("${path.module}/install.sh")
 }

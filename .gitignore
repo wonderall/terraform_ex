@@ -1,0 +1,9 @@
+.terraform
+.trunk
+02_Terraform
+lyh
+lyh.pub
+outs.txt
+php_install.txt
+terraform.tfstate
+terraform.tfstate.backup
